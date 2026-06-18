@@ -28,8 +28,11 @@ body {
     color: var(--text);
     font-family: "Space Grotesk", "Aptos", "Segoe UI", sans-serif;
     background:
-        radial-gradient(circle at top left, rgba(47, 111, 237, 0.14), transparent 28%),
-        linear-gradient(180deg, #fbf9f4 0%, var(--bg) 100%);
+        radial-gradient(circle at 10% 12%, rgba(47, 111, 237, 0.28), transparent 0 22%),
+        radial-gradient(circle at 86% 10%, rgba(255, 145, 77, 0.3), transparent 0 18%),
+        radial-gradient(circle at 75% 72%, rgba(26, 163, 135, 0.2), transparent 0 24%),
+        linear-gradient(125deg, #fffaf1 0%, #f6ecdd 36%, #edf3ff 72%, #eefaf7 100%);
+    background-attachment: fixed;
 }
 
 a {
@@ -44,24 +47,52 @@ a.button {
 
 .portfolio-body::before {
     position: fixed;
-    inset: 0;
+    inset: -10%;
     z-index: -2;
-    background-image:
-        linear-gradient(rgba(216, 210, 200, 0.45) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(216, 210, 200, 0.45) 1px, transparent 1px);
-    background-size: 48px 48px;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.9), transparent 0 16%),
+        radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.72), transparent 0 14%),
+        radial-gradient(circle at 50% 72%, rgba(255, 255, 255, 0.56), transparent 0 18%),
+        linear-gradient(rgba(78, 91, 126, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78, 91, 126, 0.08) 1px, transparent 1px),
+        linear-gradient(115deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 42%);
+    background-size: auto, auto, auto, 58px 58px, 58px 58px, auto;
     content: "";
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.52), transparent 92%);
+    opacity: 0.95;
+    transform: rotate(-7deg) scale(1.04);
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.68), transparent 94%);
 }
 
 .portfolio-body::after {
     position: fixed;
-    inset: 0;
+    inset: -8%;
     z-index: -1;
     background:
-        radial-gradient(circle at 20% 0%, rgba(47, 111, 237, 0.12), transparent 24%),
-        radial-gradient(circle at 85% 10%, rgba(29, 29, 31, 0.06), transparent 18%);
+        conic-gradient(from 180deg at 50% 50%, rgba(47, 111, 237, 0.14), rgba(255, 145, 77, 0.12), rgba(26, 163, 135, 0.1), rgba(47, 111, 237, 0.14)),
+        radial-gradient(circle at 14% 18%, rgba(47, 111, 237, 0.24), transparent 0 18%),
+        radial-gradient(circle at 84% 18%, rgba(255, 145, 77, 0.22), transparent 0 16%),
+        radial-gradient(circle at 50% 86%, rgba(26, 163, 135, 0.18), transparent 0 20%);
+    mix-blend-mode: multiply;
+    filter: blur(22px);
+    opacity: 0.82;
+    animation: ambient-drift 22s ease-in-out infinite alternate;
     content: "";
+}
+
+@keyframes ambient-drift {
+    from {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(1.5%, -1%, 0) scale(1.04);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-body::after {
+        animation: none;
+    }
 }
 
 .site-shell {
@@ -622,6 +653,20 @@ h3 {
         linear-gradient(135deg, rgba(220, 231, 255, 0.48), rgba(255, 255, 255, 0.88));
 }
 
+.project-story-with-image {
+    background:
+        linear-gradient(115deg, rgba(255, 250, 241, 0.94) 0%, rgba(255, 250, 241, 0.8) 22%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.82) 100%),
+        linear-gradient(180deg, rgba(15, 22, 36, 0.2), rgba(15, 22, 36, 0.2)),
+        var(--project-image) left center / cover no-repeat;
+}
+
+.project-story-with-image:nth-child(even) {
+    background:
+        linear-gradient(115deg, rgba(244, 248, 255, 0.94) 0%, rgba(244, 248, 255, 0.82) 22%, rgba(255, 255, 255, 0.28) 52%, rgba(255, 255, 255, 0.82) 100%),
+        linear-gradient(180deg, rgba(15, 22, 36, 0.18), rgba(15, 22, 36, 0.18)),
+        var(--project-image) left center / cover no-repeat;
+}
+
 .project-story-meta {
     display: grid;
     gap: 0.9rem;
@@ -629,8 +674,8 @@ h3 {
 
 .project-story-body {
     display: grid;
-    grid-template-columns: minmax(0, 1.1fr) 5rem minmax(0, 0.9fr);
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 0.9fr);
+    align-items: start;
     gap: 1.25rem;
 }
 
@@ -638,6 +683,23 @@ h3 {
 .project-story-points {
     display: grid;
     gap: 0.9rem;
+}
+
+.project-story-heading,
+.project-story-points,
+.project-story-meta,
+.project-story .text-link {
+    position: relative;
+    z-index: 1;
+}
+
+.project-story-heading {
+    max-width: 34rem;
+}
+
+.project-story-heading p,
+.project-story-points p {
+    color: rgba(29, 29, 31, 0.92);
 }
 
 .project-story-track {
@@ -772,26 +834,38 @@ h3 {
     align-items: stretch;
     gap: 1.5rem;
     background:
-        radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 28%),
-        linear-gradient(135deg, rgba(47, 111, 237, 0.94), rgba(28, 45, 86, 0.96)),
+        linear-gradient(135deg, rgba(16, 33, 72, 0.98), rgba(29, 61, 132, 0.96) 52%, rgba(18, 38, 82, 0.98)),
         var(--accent);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 22px 56px rgba(13, 24, 48, 0.18);
     color: #fff;
 }
 
 .contact-band .eyebrow,
 .contact-band p,
 .contact-links a {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(236, 243, 255, 0.8);
 }
 
 .contact-band h2 {
     max-width: 13ch;
+    margin: 0;
+    font-size: clamp(2.2rem, 3.7vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
 }
 
 .contact-band .button {
+    background: rgba(255, 255, 255, 0.96);
+    color: #183983;
+    border-color: rgba(255, 255, 255, 0.96);
+    box-shadow: none;
+}
+
+.contact-band .button:hover {
     background: #fff;
-    color: var(--accent);
-    border-color: #fff;
+    box-shadow: none;
 }
 
 .contact-copy {
@@ -809,12 +883,11 @@ h3 {
 .contact-highlights div,
 .contact-card,
 .contact-links a {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-md);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
+    box-shadow: none;
 }
 
 .contact-highlights div {
@@ -826,10 +899,10 @@ h3 {
 .contact-links span {
     display: block;
     margin-bottom: 0.45rem;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.78rem;
+    color: rgba(226, 236, 255, 0.72);
+    font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
 }
 
@@ -851,11 +924,121 @@ h3 {
     display: grid;
     gap: 1rem;
     padding: 1.35rem;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.contact-card .button {
+    justify-self: start;
+}
+
+.contact-card.is-open {
+    gap: 1.15rem;
 }
 
 .contact-card p {
     margin: 0;
+}
+
+.contact-form-shell {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+        grid-template-rows 220ms ease,
+        opacity 180ms ease;
+}
+
+.contact-card.is-open .contact-form-shell {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.contact-form-shell-inner {
+    overflow: hidden;
+}
+
+.contact-form {
+    display: grid;
+    gap: 1rem;
+    padding-top: 0.35rem;
+}
+
+.contact-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.contact-field {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.contact-field span,
+.contact-form-note,
+.contact-mailto-link {
+    color: rgba(232, 240, 255, 0.8);
+}
+
+.contact-field span {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.contact-field input,
+.contact-field textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 16px;
+    background: rgba(10, 24, 57, 0.22);
+    color: #fff;
+    font: inherit;
+    resize: vertical;
+    outline: none;
+    transition:
+        border-color 180ms ease,
+        background 180ms ease;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+    color: rgba(226, 236, 255, 0.46);
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(10, 24, 57, 0.3);
+}
+
+.contact-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1rem;
+    align-items: center;
+}
+
+.contact-mailto-link {
+    font-size: 0.94rem;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.26);
+    text-underline-offset: 0.22rem;
+    transition:
+        color 180ms ease,
+        text-decoration-color 180ms ease;
+}
+
+.contact-mailto-link:hover {
+    color: #fff;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form-note {
+    font-size: 0.92rem;
+    line-height: 1.55;
 }
 
 .contact-links {
@@ -868,15 +1051,13 @@ h3 {
     gap: 0.15rem;
     padding: 1.05rem 1.15rem;
     transition:
-        transform 180ms ease,
         border-color 180ms ease,
         background 180ms ease;
 }
 
 .contact-links a:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.34);
-    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .site-footer {
@@ -1080,6 +1261,10 @@ h3 {
     }
 
     .contact-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-grid {
         grid-template-columns: 1fr;
     }
 }

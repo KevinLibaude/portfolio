@@ -132,7 +132,10 @@
 
                 <div class="project-showcase">
                     {% for project in projects %}
-                        <article class="project-story">
+                        <article
+                            class="project-story{% if project.image %} project-story-with-image{% endif %}"
+                            {% if project.image %}style="--project-image: url('{{ project.image }}');"{% endif %}
+                        >
                             <div class="project-story-meta">
                                 <p class="project-story-index">0{{ loop.index }}</p>
                                 <p class="project-type">{{ project.type }}</p>
@@ -223,17 +226,58 @@
                 </div>
 
                 <div class="contact-actions">
-                    <div class="contact-card">
+                    <div class="contact-card" data-controller="contact-reveal">
                         <p class="contact-card-label">Prise de contact</p>
-                        <a class="button" href="mailto:kevin.libaude@gmail.com">Parler de votre projet</a>
-                        <p>Un message suffit pour poser le contexte, le besoin et les premières questions.</p>
+                        <button
+                            class="button"
+                            type="button"
+                            data-action="contact-reveal#toggle"
+                            data-contact-reveal-target="trigger"
+                            aria-expanded="false"
+                        >
+                            Afficher le formulaire
+                        </button>
+                        <p>Quelques informations suffisent pour poser le contexte, le besoin et les premières questions.</p>
+
+                        <div class="contact-form-shell" data-contact-reveal-target="panel" aria-hidden="true" inert>
+                            <div class="contact-form-shell-inner">
+                                <form class="contact-form" data-action="submit->contact-reveal#submit input->contact-reveal#refreshMailto">
+                                    <div class="contact-form-grid">
+                                        <label class="contact-field">
+                                            <span>Nom</span>
+                                            <input type="text" name="name" autocomplete="name" data-contact-reveal-target="name firstField">
+                                        </label>
+
+                                        <label class="contact-field">
+                                            <span>Email</span>
+                                            <input type="email" name="email" autocomplete="email" data-contact-reveal-target="email">
+                                        </label>
+                                    </div>
+
+                                    <label class="contact-field">
+                                        <span>Projet</span>
+                                        <input type="text" name="project" placeholder="Refonte, outil métier, site vitrine..." data-contact-reveal-target="project">
+                                    </label>
+
+                                    <label class="contact-field">
+                                        <span>Message</span>
+                                        <textarea name="message" rows="5" placeholder="Quelques lignes sur votre besoin, votre contexte ou vos priorités." data-contact-reveal-target="message"></textarea>
+                                    </label>
+
+                                    <div class="contact-form-actions">
+                                        <button class="button" type="submit">Préparer le message</button>
+                                        <a class="contact-mailto-link" href="mailto:kevin.libaude@gmail.com" data-contact-reveal-target="mailtoLink">
+                                            Ouvrir directement dans la messagerie
+                                        </a>
+                                    </div>
+
+                                    <p class="contact-form-note">Le message s'ouvre dans votre application mail avec les informations déjà préremplies.</p>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="contact-links">
-                        <a href="mailto:kevin.libaude@gmail.com">
-                            <span>Email</span>
-                            <strong>kevin.libaude@gmail.com</strong>
-                        </a>
                         <a href="https://www.linkedin.com/in/kevin-libaude-5540616b/" target="_blank" rel="noreferrer">
                             <span>LinkedIn</span>
                             <strong>Échanger sur le projet</strong>

@@ -91,6 +91,7 @@ final class PortfolioContent
             [
                 'slug' => 'entreprise-marques',
                 'name' => 'Entreprise Marques',
+                'image' => '/projects/entreprise-marques/site.png',
                 'type' => 'Refonte de site vitrine',
                 'status' => 'En ligne',
                 'summary' => "Refonte progressive d'un site legacy de terrassement vers une base Symfony plus propre, plus fiable et plus simple à faire évoluer.",
@@ -157,6 +158,7 @@ final class PortfolioContent
             ],
             [
                 'slug' => 'kairos-mediation',
+                'image' => null,
                 'name' => 'Kairos Médiation',
                 'type' => 'Application métier / SaaS',
                 'status' => 'En développement',
@@ -222,6 +224,7 @@ final class PortfolioContent
             ],
             [
                 'slug' => 'php-security-suite',
+                'image' => null,
                 'name' => 'PHP Security Suite',
                 'type' => "Suite d'outils / sécurité",
                 'status' => 'En développement',
@@ -292,8 +295,6 @@ final class PortfolioContent
     {
         foreach (self::projects() as $project) {
             if ($project['slug'] === $slug) {
-                $project['image'] = '/projects/' . $project['slug'] . '/site.png';
-
                 return $project;
             }
         }
