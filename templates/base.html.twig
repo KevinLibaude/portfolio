@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Portfolio freelance de Kevin Libaude, concepteur et developpeur d'applications web sur mesure.">
+        <title>{% block title %}Kevin Libaude{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 96 96%22><rect width=%2296%22 height=%2296%22 rx=%2224%22 fill=%22%232f6fed%22/><text x=%2250%25%22 y=%2259%25%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22 font-family=%22Arial%22>KL</text></svg>">
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body class="portfolio-body">
+        {% block body %}{% endblock %}
+    </body>
+</html>

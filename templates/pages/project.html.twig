@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.name }} | Kevin Libaude{% endblock %}
+
+{% block body %}
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="{{ path('app_home') }}">
+                <span class="brand-mark">KL</span>
+                <span>
+                    <strong>{{ identity.name }}</strong>
+                    <small>{{ identity.role }}</small>
+                </span>
+            </a>
+
+            <a class="button button-outline" href="{{ path('app_home') }}#realisations">Retour aux realisations</a>
+        </header>
+
+        <main class="project-page">
+            <section class="section project-hero">
+                {% if project.image is defined %}
+                    <figure class="project-shot">
+                        <img src="{{ project.image }}" alt="Aperçu du projet {{ project.name }}">
+                    </figure>
+                {% endif %}
+
+                <div class="project-hero-copy">
+                    <p class="eyebrow">{{ project.type }}</p>
+                    <h1>{{ project.name }}</h1>
+                    <p class="hero-text">{{ project.summary }}</p>
+
+                    {% if project.links is not empty %}
+                        <div class="hero-actions">
+                            {% for link in project.links %}
+                                <a class="button" href="{{ link.url }}" target="_blank" rel="noreferrer">{{ link.label }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+
+            {% if project.facts is not empty %}
+                <section class="section project-facts-grid">
+                    {% for fact in project.facts %}
+                        <article class="project-fact-strip">
+                            <p class="panel-label">{{ fact.label }}</p>
+                            <p class="project-fact-value">{{ fact.value }}</p>
+                        </article>
+                    {% endfor %}
+                </section>
+            {% endif %}
+
+            <section class="section project-layout">
+                {% for section in project.sections %}
+                    <article class="project-chapter">
+                        <p class="project-chapter-index">0{{ loop.index }}</p>
+                        <div class="project-chapter-body">
+                            <p class="panel-label">{{ section.label }}</p>
+                            <h2>{{ section.title }}</h2>
+                            <p>{{ section.content }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </section>
+
+            {% for list in project.list_sections %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ list.eyebrow }}</p>
+                        <h2>{{ list.title }}</h2>
+                    </div>
+
+                    {% if list.variant == 'cards' %}
+                        <div class="feature-list">
+                            {% for item in list.items %}
+                                <article class="feature-row">
+                                    <h3>{{ item.title }}</h3>
+                                    <p>{{ item.description }}</p>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </section>
+            {% endfor %}
+
+            <section class="section">
+                <div class="section-heading compact">
+                    <p class="eyebrow">Base technique</p>
+                    <h2>Quelques briques mobilisees</h2>
+                </div>
+
+                <div class="tag-row">
+                    {% for item in project.stack %}
+                        <span class="tag">{{ item }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+{% endblock %}

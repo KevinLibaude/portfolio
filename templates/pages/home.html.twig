@@ -1,0 +1,258 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kevin Libaude | Concepteur & développeur d'application{% endblock %}
+
+{% block body %}
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="{{ path('app_home') }}">
+                <span class="brand-mark">KL</span>
+                <span>
+                    <strong>{{ identity.name }}</strong>
+                    <small>{{ identity.role }}</small>
+                </span>
+            </a>
+
+            <nav class="site-nav" aria-label="Navigation principale">
+                <a href="#services">Services</a>
+                <a href="#methode">Méthode</a>
+                <a href="#realisations">Réalisations</a>
+                <a href="#a-propos">À propos</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <a class="button button-outline" href="#contact">Parlons de votre projet</a>
+        </header>
+
+        <main>
+            <section class="hero section">
+                <div class="hero-copy">
+                    <p class="eyebrow">Direction créative & stratégique</p>
+                    <h1>{{ identity.promise }}</h1>
+                    <p class="hero-text">{{ identity.subtitle }}</p>
+
+                    <div class="hero-actions">
+                        <a class="button" href="#contact">Parlons de votre projet</a>
+                        <a class="button button-ghost" href="#realisations">Voir mes réalisations</a>
+                    </div>
+
+                    <ul class="hero-points">
+                        <li>Applications web sur mesure</li>
+                        <li>Outils métier et automatisation</li>
+                        <li>Accompagnement de la conception à la livraison</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="visual-grid"></div>
+                    <div class="visual-node node-a"></div>
+                    <div class="visual-node node-b"></div>
+                    <div class="visual-node node-c"></div>
+                    <div class="visual-node node-d"></div>
+                    <div class="visual-line line-a"></div>
+                    <div class="visual-line line-b"></div>
+                    <div class="visual-line line-c"></div>
+                    <div class="visual-card visual-card-a">
+                        <span>Besoin</span>
+                        <strong>Clarifier</strong>
+                    </div>
+                    <div class="visual-card visual-card-b">
+                        <span>Conception</span>
+                        <strong>Structurer</strong>
+                    </div>
+                    <div class="visual-card visual-card-c">
+                        <span>Livraison</span>
+                        <strong>Faire vivre</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services" class="section">
+                <div class="section-heading">
+                    <p class="eyebrow">Services</p>
+                    <h2>Ce que je peux construire avec vous</h2>
+                    <p>Chaque projet commence par un besoin concret : gagner du temps, mieux organiser une activité, moderniser un outil ou créer une solution dédiée.</p>
+                </div>
+
+                <div class="services-flow">
+                    <div class="services-intro">
+                        <p class="panel-label">Approche</p>
+                        <h3>Moins de catalogue, plus de trajectoire</h3>
+                        <p>Chaque intervention part d'une situation réelle, puis se transforme en outil, en interface et en solution durable.</p>
+                    </div>
+
+                    <div class="services-stack">
+                        {% for service in services %}
+                            <article class="service-band">
+                                <p class="service-kicker">0{{ loop.index }} / besoin</p>
+                                <div class="service-band-body">
+                                    <h3>{{ service.title }}</h3>
+                                    <p>{{ service.description }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <section id="methode" class="section">
+                <div class="section-heading">
+                    <p class="eyebrow">Méthode</p>
+                    <h2>Une méthode simple, claire et progressive</h2>
+                    <p>L'objectif est d'avancer étape par étape, sans complexifier inutilement le projet.</p>
+                </div>
+
+                <div class="method-flow">
+                    <article class="method-lead">
+                        <p class="panel-label">Cadence</p>
+                        <h3>Un cadre clair pour avancer sans lourdeur</h3>
+                        <p>On part du besoin, on structure l'idée, puis on livre une première version utile avant de la faire évoluer avec les usages réels.</p>
+                    </article>
+
+                    <div class="method-rail">
+                        {% for step in steps %}
+                            <article class="method-step">
+                                <p class="method-step-index">{{ step.index }}</p>
+                                <div class="method-step-body">
+                                    <h3>{{ step.title }}</h3>
+                                    <p>{{ step.description }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <section id="realisations" class="section">
+                <div class="section-heading">
+                    <p class="eyebrow">Réalisations</p>
+                    <h2>Des projets pensés pour répondre à un besoin réel</h2>
+                    <p>Chaque réalisation est présentée comme une réponse à un problème concret, pas comme une simple liste de technologies.</p>
+                </div>
+
+                <div class="project-showcase">
+                    {% for project in projects %}
+                        <article class="project-story">
+                            <div class="project-story-meta">
+                                <p class="project-story-index">0{{ loop.index }}</p>
+                                <p class="project-type">{{ project.type }}</p>
+                            </div>
+
+                            <div class="project-story-body">
+                                <div class="project-story-heading">
+                                    <h3>{{ project.name }}</h3>
+                                    <p>{{ project.summary }}</p>
+                                </div>
+
+                                <div class="project-story-track" aria-hidden="true"></div>
+
+                                <div class="project-story-points">
+                                    <div>
+                                        <span>Problème</span>
+                                        <p>{{ project.problem }}</p>
+                                    </div>
+                                    <div>
+                                        <span>Solution</span>
+                                        <p>{{ project.solution }}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="text-link" href="{{ path('app_project_show', { slug: project.slug }) }}">Explorer le projet</a>
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="section section-split">
+                <div id="expertises">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">Expertises</p>
+                    <h2>Des compétences au service de solutions utiles</h2>
+                    </div>
+
+                    <div class="expertise-list">
+                        {% for expertise in expertises %}
+                            <article class="expertise-row">
+                                <h3>{{ expertise.title }}</h3>
+                                <p>{{ expertise.description }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <aside id="a-propos" class="about-panel">
+                    <p class="eyebrow">À propos</p>
+                    <h2>Concevoir utile, développer durable</h2>
+                    <p>Je conçois des solutions numériques avec une idée simple : un bon outil doit répondre à un vrai besoin, rester compréhensible pour ses utilisateurs et pouvoir évoluer dans le temps.</p>
+                    <p>Mon parcours mêle développement web, conception d'applications, gestion de projet et expérience terrain auprès des utilisateurs.</p>
+
+                    <div class="mindmap">
+                        <div>
+                            <span>Humain</span>
+                            <small>Comprendre - Écouter - Accompagner</small>
+                        </div>
+                        <div>
+                            <span>Produit</span>
+                            <small>Organiser - Prioriser - Concevoir</small>
+                        </div>
+                        <div>
+                            <span>Technique</span>
+                            <small>Développer - Maintenir - Faire évoluer</small>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section id="contact" class="section contact-band">
+                <div class="contact-copy">
+                    <p class="eyebrow">Contact</p>
+                    <h2>On peut partir d'une idée floue et la transformer en plan d'action clair.</h2>
+                    <p>Que votre besoin soit déjà cadré ou encore en réflexion, l'objectif est d'identifier rapidement ce qu'il faut construire, dans quel ordre et avec quel niveau d'ambition.</p>
+
+                    <div class="contact-highlights">
+                        <div>
+                            <span>Premier échange</span>
+                            <strong>Simple et direct</strong>
+                        </div>
+                        <div>
+                            <span>Point de départ</span>
+                            <strong>Besoin, contexte, priorités</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-actions">
+                    <div class="contact-card">
+                        <p class="contact-card-label">Prise de contact</p>
+                        <a class="button" href="mailto:kevin.libaude@gmail.com">Parler de votre projet</a>
+                        <p>Un message suffit pour poser le contexte, le besoin et les premières questions.</p>
+                    </div>
+
+                    <div class="contact-links">
+                        <a href="mailto:kevin.libaude@gmail.com">
+                            <span>Email</span>
+                            <strong>kevin.libaude@gmail.com</strong>
+                        </a>
+                        <a href="https://www.linkedin.com/in/kevin-libaude-5540616b/" target="_blank" rel="noreferrer">
+                            <span>LinkedIn</span>
+                            <strong>Échanger sur le projet</strong>
+                        </a>
+                        <a href="https://github.com/KevinLibaude" target="_blank" rel="noreferrer">
+                            <span>GitHub</span>
+                            <strong>Voir l'univers technique</strong>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <br/>
+        <footer class="site-footer">
+            <div>
+                <strong>{{ identity.name }}</strong>
+                <p>{{ identity.role }}</p>
+            </div>
+            <p>Portfolio freelance construit avec Symfony.</p>
+        </footer>
+    </div>
+{% endblock %}
