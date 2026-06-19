@@ -3,6 +3,35 @@
 {% block title %}Kevin Libaude | Concepteur & développeur d'application{% endblock %}
 
 {% block body %}
+    {% set method_lead = {
+        label: 'Cadence',
+        title: 'Un cadre clair pour avancer sans lourdeur',
+        description: "On part du besoin, on structure l'idée, puis on livre une première version utile avant de la faire évoluer avec les usages réels.",
+        image: 'https://unsplash.com/photos/PnkX_rp53SE/download?force=true&w=1200',
+        image_alt: 'Poste de travail sobre avec ordinateur portable, carnet et lumière naturelle pour illustrer une méthode claire et structurée.'
+    } %}
+    {% set method_images = {
+        '01': {
+            image: 'https://unsplash.com/photos/4nSKsoYyuPQ/download?force=true&w=1200',
+            alt: 'Équipe en atelier devant un tableau pour cadrer un besoin et organiser les premières idées.'
+        },
+        '02': {
+            image: 'https://unsplash.com/photos/TS6FasMlQWs/download?force=true&w=1200',
+            alt: 'Croquis de wireframe sur papier pour structurer une interface avant le développement.'
+        },
+        '03': {
+            image: 'https://unsplash.com/photos/oCD1HUJmFIM/download?force=true&w=1200',
+            alt: 'Développeur concentré devant son ordinateur portable pendant une phase de réalisation.'
+        },
+        '04': {
+            image: 'https://unsplash.com/photos/CqQWt4a-XfY/download?force=true&w=1200',
+            alt: 'Ordinateur, carnet et café sur un poste de travail prêt pour une livraison propre et cadrée.'
+        },
+        '05': {
+            image: 'https://unsplash.com/photos/JKUTrJ4vK00/download?force=true&w=1200',
+            alt: 'Tableau de bord analytique affiché sur un ordinateur pour suivre les usages et orienter les évolutions.'
+        }
+    } %}
     <div class="site-shell">
         <header class="site-header">
             <a class="brand" href="{{ path('app_home') }}">
@@ -104,21 +133,41 @@
 
                 <div class="method-flow">
                     <article class="method-lead">
-                        <p class="panel-label">Cadence</p>
-                        <h3>Un cadre clair pour avancer sans lourdeur</h3>
-                        <p>On part du besoin, on structure l'idée, puis on livre une première version utile avant de la faire évoluer avec les usages réels.</p>
+                        <div class="method-lead-visual">
+                            <img src="{{ method_lead.image }}" alt="{{ method_lead.image_alt }}" loading="lazy">
+                        </div>
+                        <p class="panel-label">{{ method_lead.label }}</p>
+                        <h3>{{ method_lead.title }}</h3>
+                        <p>{{ method_lead.description }}</p>
                     </article>
 
-                    <div class="method-rail">
-                        {% for step in steps %}
-                            <article class="method-step">
-                                <p class="method-step-index">{{ step.index }}</p>
-                                <div class="method-step-body">
-                                    <h3>{{ step.title }}</h3>
-                                    <p>{{ step.description }}</p>
-                                </div>
-                            </article>
-                        {% endfor %}
+                    <div class="method-rail" data-controller="method-stack" data-method-stack-visible-count-value="3">
+                        <div class="method-steps-stack">
+                            {% for step in steps %}
+                                {% set step_image = method_images[step.index] ?? null %}
+                                <article
+                                    class="method-step"
+                                    data-method-stack-target="step"
+                                    data-action="click->method-stack#advance keydown.enter->method-stack#advance keydown.space->method-stack#advance"
+                                    tabindex="0"
+                                >
+                                    <p class="method-step-index">{{ step.index }}</p>
+                                    <div class="method-step-body">
+                                        {% if step_image %}
+                                            <div class="method-step-visual">
+                                                <img src="{{ step_image.image }}" alt="{{ step_image.alt }}" loading="lazy">
+                                            </div>
+                                        {% endif %}
+                                        <h3>{{ step.title }}</h3>
+                                        <p>{{ step.description }}</p>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+
+                        <button class="method-stack-button" type="button" data-action="method-stack#advance">
+                            Étape suivante
+                        </button>
                     </div>
                 </div>
             </section>

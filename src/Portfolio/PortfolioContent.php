@@ -9,7 +9,7 @@ final class PortfolioContent
         return [
             'name' => 'Kevin Libaude',
             'role' => "Concepteur & développeur d'application",
-            'promise' => "J'aide les entreprises, associations et indépendants à transformer leurs besoins métier en outils numériques simples, fiables et durables.",
+            'promise' => "Transformons vos besoins métier en outils numériques simples, fiables et durables.",
             'subtitle' => "Conception et développement d'applications web, d'outils internes et de solutions sur mesure.",
         ];
     }
