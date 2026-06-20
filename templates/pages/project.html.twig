@@ -13,21 +13,32 @@
                 </span>
             </a>
 
-            <a class="button button-outline" href="{{ path('app_home') }}#realisations">Retour aux realisations</a>
+            <a class="button button-outline project-back-link" href="{{ path('app_home') }}#realisations">Retour aux realisations</a>
         </header>
 
         <main class="project-page">
             <section class="section project-hero">
-                {% if project.image %}
-                    <figure class="project-shot">
-                        <img src="{{ project.image }}" alt="Aperçu du projet {{ project.name }}">
-                    </figure>
-                {% endif %}
+                <div class="project-hero-primary">
+                    {% if project.image %}
+                        <figure class="project-shot">
+                            <img src="{{ project.image }}" alt="Apercu du projet {{ project.name }}">
+                        </figure>
+                    {% else %}
+                        <article class="project-hero-panel project-hero-placeholder" aria-hidden="true">
+                            <p class="panel-label">Vue d ensemble</p>
+                            <h2>{{ project.name }}</h2>
+                            <p>{{ project.type }}</p>
+                        </article>
+                    {% endif %}
+                </div>
 
-                <div class="project-hero-copy">
-                    <p class="eyebrow">{{ project.type }}</p>
-                    <h1>{{ project.name }}</h1>
-                    <p class="hero-text">{{ project.summary }}</p>
+                <aside class="project-overview project-hero-copy">
+                    <article class="project-summary-card project-summary-card-hero">
+                        <p class="panel-label">{{ project.status }}</p>
+                        <p class="project-intro-type">{{ project.type }}</p>
+                        <h2>{{ project.name }}</h2>
+                        <p>{{ project.summary }}</p>
+                    </article>
 
                     {% if project.links is not empty %}
                         <div class="hero-actions">
@@ -36,17 +47,110 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                </aside>
+            </section>
+
+            <section class="section">
+                <div class="section-heading compact">
+                    <p class="eyebrow">Lecture rapide</p>
+                    <h2>Les points cles du projet</h2>
+                </div>
+
+                <div class="project-summary-points project-summary-points-grid">
+                    <div>
+                        <span>Probleme</span>
+                        <p>{{ project.problem }}</p>
+                    </div>
+                    <div>
+                        <span>Defi</span>
+                        <p>{{ project.challenge }}</p>
+                    </div>
+                    <div>
+                        <span>Solution</span>
+                        <p>{{ project.solution }}</p>
+                    </div>
+                    <div>
+                        <span>Impact</span>
+                        <p>{{ project.result }}</p>
+                    </div>
                 </div>
             </section>
 
-            {% if project.facts is not empty %}
-                <section class="section project-facts-grid">
-                    {% for fact in project.facts %}
-                        <article class="project-fact-strip">
-                            <p class="panel-label">{{ fact.label }}</p>
-                            <p class="project-fact-value">{{ fact.value }}</p>
+            {% if project.before_after is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.before_after.eyebrow }}</p>
+                        <h2>{{ project.before_after.title }}</h2>
+                    </div>
+
+                    <div class="project-before-after">
+                        <article class="project-state-card">
+                            <p class="panel-label">{{ project.before_after.before.label }}</p>
+                            <p>{{ project.before_after.before.text }}</p>
                         </article>
-                    {% endfor %}
+
+                        <article class="project-state-card project-state-card-accent">
+                            <p class="panel-label">{{ project.before_after.after.label }}</p>
+                            <p>{{ project.before_after.after.text }}</p>
+                        </article>
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if project.constraints is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.constraints.eyebrow }}</p>
+                        <h2>{{ project.constraints.title }}</h2>
+                    </div>
+
+                    <div class="project-editorial-grid">
+                        {% for item in project.constraints.items %}
+                            <article class="project-editorial-card">
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.description }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if project.decisions is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.decisions.eyebrow }}</p>
+                        <h2>{{ project.decisions.title }}</h2>
+                    </div>
+
+                    <div class="project-decision-flow">
+                        {% for item in project.decisions.items %}
+                            <article class="project-decision-card">
+                                <p class="project-decision-index">0{{ loop.index }}</p>
+                                <div class="project-decision-body">
+                                    <h3>{{ item.title }}</h3>
+                                    <p>{{ item.description }}</p>
+                                </div>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if project.delivery is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.delivery.eyebrow }}</p>
+                        <h2>{{ project.delivery.title }}</h2>
+                    </div>
+
+                    <div class="feature-list">
+                        {% for item in project.delivery.items %}
+                            <article class="feature-row">
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.description }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
                 </section>
             {% endif %}
 
@@ -83,9 +187,45 @@
                 </section>
             {% endfor %}
 
+            {% if project.outcomes is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.outcomes.eyebrow }}</p>
+                        <h2>{{ project.outcomes.title }}</h2>
+                    </div>
+
+                    <div class="project-outcomes-grid">
+                        {% for item in project.outcomes.items %}
+                            <article class="project-outcome-card">
+                                <p class="panel-label">{{ item.label }}</p>
+                                <p class="project-outcome-value">{{ item.value }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
+            {% if project.stack_details is defined %}
+                <section class="section">
+                    <div class="section-heading compact">
+                        <p class="eyebrow">{{ project.stack_details.eyebrow }}</p>
+                        <h2>{{ project.stack_details.title }}</h2>
+                    </div>
+
+                    <div class="project-stack-story">
+                        {% for item in project.stack_details.items %}
+                            <article class="project-stack-card">
+                                <h3>{{ item.name }}</h3>
+                                <p>{{ item.role }}</p>
+                            </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+
             <section class="section">
                 <div class="section-heading compact">
-                    <p class="eyebrow">Base technique</p>
+                    <p class="eyebrow">Stack</p>
                     <h2>Quelques briques mobilisees</h2>
                 </div>
 
@@ -95,6 +235,7 @@
                     {% endfor %}
                 </div>
             </section>
+
         </main>
     </div>
 {% endblock %}
