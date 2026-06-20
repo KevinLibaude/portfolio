@@ -134,7 +134,14 @@
                 <div class="method-flow">
                     <article class="method-lead">
                         <div class="method-lead-visual">
-                            <img src="{{ method_lead.image }}" alt="{{ method_lead.image_alt }}" loading="lazy">
+                            <img
+                                src="{{ method_lead.image }}"
+                                alt="{{ method_lead.image_alt }}"
+                                loading="lazy"
+                                decoding="async"
+                                width="1200"
+                                height="1799"
+                            >
                         </div>
                         <p class="panel-label">{{ method_lead.label }}</p>
                         <h3>{{ method_lead.title }}</h3>
@@ -155,7 +162,14 @@
                                     <div class="method-step-body">
                                         {% if step_image %}
                                             <div class="method-step-visual">
-                                                <img src="{{ step_image.image }}" alt="{{ step_image.alt }}" loading="lazy">
+                                                <img
+                                                    src="{{ step_image.image }}"
+                                                    alt="{{ step_image.alt }}"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    width="1200"
+                                                    height="{% if step.index == '03' %}819{% elseif step.index == '04' %}810{% else %}800{% endif %}"
+                                                >
                                             </div>
                                         {% endif %}
                                         <h3>{{ step.title }}</h3>

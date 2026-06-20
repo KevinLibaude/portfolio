@@ -21,7 +21,13 @@
                 <div class="project-hero-primary">
                     {% if project.image %}
                         <figure class="project-shot">
-                            <img src="{{ project.image }}" alt="Apercu du projet {{ project.name }}">
+                            <img
+                                src="{{ project.image }}"
+                                alt="Apercu du projet {{ project.name }}"
+                                decoding="async"
+                                width="4460"
+                                height="2786"
+                            >
                         </figure>
                     {% else %}
                         <article class="project-hero-panel project-hero-placeholder" aria-hidden="true">
