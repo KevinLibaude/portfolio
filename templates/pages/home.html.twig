@@ -32,6 +32,10 @@
             alt: 'Tableau de bord analytique affiché sur un ordinateur pour suivre les usages et orienter les évolutions.'
         }
     } %}
+    {% set contact_state = app.request.query.get('contact') %}
+    {% set contact_success_messages = app.flashes('contact_success') %}
+    {% set contact_error_messages = app.flashes('contact_error') %}
+    {% set has_contact_feedback = contact_state in ['success', 'error'] or (contact_success_messages|length + contact_error_messages|length) > 0 %}
     <div class="site-shell">
         <header class="site-header">
             <a class="brand" href="{{ path('app_home') }}">
@@ -52,6 +56,20 @@
 
             <a class="button button-outline" href="#contact">Parlons de votre projet</a>
         </header>
+
+        {% if has_contact_feedback %}
+            <div class="contact-page-feedback{% if contact_state == 'error' or contact_error_messages is not empty %} contact-page-feedback-error{% else %} contact-page-feedback-success{% endif %}">
+                {% if contact_state == 'success' and contact_success_messages is empty %}
+                    <p>Votre message a bien ete envoye depuis le site.</p>
+                {% elseif contact_state == 'error' and contact_error_messages is empty %}
+                    <p>Le message n a pas pu etre envoye pour le moment.</p>
+                {% elseif contact_success_messages is not empty %}
+                    <p>{{ contact_success_messages|first }}</p>
+                {% elseif contact_error_messages is not empty %}
+                    <p>{{ contact_error_messages|first }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
 
         <main>
             <section class="hero section">
@@ -289,8 +307,24 @@
                 </div>
 
                 <div class="contact-actions">
-                    <div class="contact-card" data-controller="contact-reveal">
+                    <div
+                        class="contact-card{% if has_contact_feedback %} is-open{% endif %}"
+                        data-controller="contact-reveal"
+                        data-contact-reveal-open-on-connect-value="{{ has_contact_feedback ? 'true' : 'false' }}"
+                    >
                         <p class="contact-card-label">Prise de contact</p>
+                        {% if contact_state == 'success' and contact_success_messages is empty %}
+                            <p class="contact-feedback contact-feedback-success">Votre message a bien ete envoye. Je vous repondrai rapidement.</p>
+                        {% endif %}
+                        {% if contact_state == 'error' and contact_error_messages is empty %}
+                            <p class="contact-feedback contact-feedback-error">Le message n a pas pu etre envoye pour le moment. Merci de reessayer un peu plus tard.</p>
+                        {% endif %}
+                        {% for message in contact_success_messages %}
+                            <p class="contact-feedback contact-feedback-success">{{ message }}</p>
+                        {% endfor %}
+                        {% for message in contact_error_messages %}
+                            <p class="contact-feedback contact-feedback-error">{{ message }}</p>
+                        {% endfor %}
                         <button
                             class="button"
                             type="button"
@@ -302,39 +336,37 @@
                         </button>
                         <p>Quelques informations suffisent pour poser le contexte, le besoin et les premières questions.</p>
 
-                        <div class="contact-form-shell" data-contact-reveal-target="panel" aria-hidden="true" inert>
+                        <div class="contact-form-shell" data-contact-reveal-target="panel" aria-hidden="{{ has_contact_feedback ? 'false' : 'true' }}" {% if not has_contact_feedback %}inert{% endif %}>
                             <div class="contact-form-shell-inner">
-                                <form class="contact-form" data-action="submit->contact-reveal#submit input->contact-reveal#refreshMailto">
+                                <form class="contact-form" method="post" action="{{ path('app_contact_send') }}" data-turbo="false">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('contact_form') }}">
                                     <div class="contact-form-grid">
                                         <label class="contact-field">
                                             <span>Nom</span>
-                                            <input type="text" name="name" autocomplete="name" data-contact-reveal-target="name firstField">
+                                            <input type="text" name="name" autocomplete="name" data-contact-reveal-target="firstField" required>
                                         </label>
 
                                         <label class="contact-field">
                                             <span>Email</span>
-                                            <input type="email" name="email" autocomplete="email" data-contact-reveal-target="email">
+                                            <input type="email" name="email" autocomplete="email" required>
                                         </label>
                                     </div>
 
                                     <label class="contact-field">
                                         <span>Projet</span>
-                                        <input type="text" name="project" placeholder="Refonte, outil métier, site vitrine..." data-contact-reveal-target="project">
+                                        <input type="text" name="project" placeholder="Refonte, outil métier, site vitrine...">
                                     </label>
 
                                     <label class="contact-field">
                                         <span>Message</span>
-                                        <textarea name="message" rows="5" placeholder="Quelques lignes sur votre besoin, votre contexte ou vos priorités." data-contact-reveal-target="message"></textarea>
+                                        <textarea name="message" rows="5" placeholder="Quelques lignes sur votre besoin, votre contexte ou vos priorités." required></textarea>
                                     </label>
 
                                     <div class="contact-form-actions">
-                                        <button class="button" type="submit">Préparer le message</button>
-                                        <a class="contact-mailto-link" href="mailto:kevin.libaude@gmail.com" data-contact-reveal-target="mailtoLink">
-                                            Ouvrir directement dans la messagerie
-                                        </a>
+                                        <button class="button" type="submit">Envoyer le message</button>
                                     </div>
 
-                                    <p class="contact-form-note">Le message s'ouvre dans votre application mail avec les informations déjà préremplies.</p>
+                                    <p class="contact-form-note">Le message est envoyé directement depuis le site.</p>
                                 </form>
                             </div>
                         </div>

@@ -111,7 +111,7 @@ final class PortfolioContent
                     ['label' => 'Priorité', 'value' => 'Continuité de service'],
                 ],
                 'before_after' => [
-                    'eyebrow' => 'Avant / apres',
+                    'eyebrow' => 'Avant / après',
                     'title' => 'Une refonte pensée comme une transition maîtrisée',
                     'before' => [
                         'label' => 'Avant',
@@ -141,7 +141,7 @@ final class PortfolioContent
                     ],
                 ],
                 'decisions' => [
-                    'eyebrow' => 'Decisions cles',
+                    'eyebrow' => 'Décisions clés',
                     'title' => 'Les choix structurants qui ont guidé la reprise',
                     'items' => [
                         [
@@ -159,7 +159,7 @@ final class PortfolioContent
                     ],
                 ],
                 'delivery' => [
-                    'eyebrow' => 'Perimetre realise',
+                    'eyebrow' => 'Périmètre réalisé',
                     'title' => 'Ce qui a déjà été repris concrètement',
                     'items' => [
                         [
@@ -224,7 +224,7 @@ final class PortfolioContent
                     ],
                 ],
                 'outcomes' => [
-                    'eyebrow' => 'Benefices',
+                    'eyebrow' => 'Bénéfices',
                     'title' => 'Ce que cette base change vraiment',
                     'items' => [
                         ['label' => 'Maintenance', 'value' => 'Interventions plus lisibles et moins risquées'],
@@ -270,12 +270,12 @@ final class PortfolioContent
                 'summary' => 'Une plateforme métier pensée pour centraliser le suivi des dossiers de médiation, les rendez-vous, les utilisateurs et les interactions dans une interface unique.',
                 'problem' => "Le suivi d un processus de médiation implique plusieurs acteurs, des dossiers, des rendez-vous, des notifications et des échanges qui gagnent à être structurés dans un seul outil.",
                 'challenge' => "Construire un socle produit clair dès le départ, avec une vraie séparation front / back et un périmètre métier capable d évoluer.",
-                'solution' => "Conception d une application avec front React / Vite et API Symfony dédiée, couvrant l authentification, les utilisateurs, les dossiers, les rendez vous, les interactions et les notifications.",
+                'solution' => "Conception d une application avec front React / Vite et API Symfony dédiée, couvrant l authentification, les utilisateurs, les dossiers, les rendez-vous, les interactions et les notifications.",
                 'result' => 'Le produit est encore en construction, mais son architecture et son vocabulaire métier sont déjà posés pour permettre une évolution progressive.',
                 'hero' => [
-                    'eyebrow' => 'Produit metier',
+                    'eyebrow' => 'Produit métier',
                     'headline' => 'Concevoir un outil de médiation lisible pour plusieurs acteurs et plusieurs temps de suivi.',
-                    'intro' => 'Le sujet n est pas seulement de stocker des dossiers, mais d organiser un processus sensible avec ses rendez vous, ses échanges et ses notifications.',
+                    'intro' => 'Le sujet n est pas seulement de stocker des dossiers, mais d organiser un processus sensible avec ses rendez-vous, ses échanges et ses notifications.',
                 ],
                 'facts' => [
                     ['label' => 'Format', 'value' => 'Front + API séparés'],
@@ -284,7 +284,7 @@ final class PortfolioContent
                     ['label' => 'Ambition', 'value' => 'Socle SaaS évolutif'],
                 ],
                 'before_after' => [
-                    'eyebrow' => 'Avant / apres',
+                    'eyebrow' => 'Avant / après',
                     'title' => 'Passer d un suivi dispersé à un cadre produit cohérent',
                     'before' => [
                         'label' => 'Avant',
@@ -292,7 +292,7 @@ final class PortfolioContent
                     ],
                     'after' => [
                         'label' => 'Après',
-                        'text' => 'Le produit pose une colonne vertébrale claire : utilisateurs, dossiers, interactions, rendez vous et notifications suivent un même vocabulaire et un même flux.',
+                        'text' => 'Le produit pose une colonne vertébrale claire : utilisateurs, dossiers, interactions, rendez-vous et notifications suivent un même vocabulaire et un même flux.',
                     ],
                 ],
                 'constraints' => [
@@ -314,7 +314,7 @@ final class PortfolioContent
                     ],
                 ],
                 'decisions' => [
-                    'eyebrow' => 'Decisions cles',
+                    'eyebrow' => 'Décisions clés',
                     'title' => 'Les choix qui donnent déjà une direction produit nette',
                     'items' => [
                         [
@@ -323,7 +323,7 @@ final class PortfolioContent
                         ],
                         [
                             'title' => 'Poser tôt les objets métier centraux',
-                            'description' => 'Utilisateurs, dossiers, interactions, rendez vous et notifications servent déjà de langage commun au produit.',
+                            'description' => 'Utilisateurs, dossiers, interactions, rendez-vous et notifications servent déjà de langage commun au produit.',
                         ],
                         [
                             'title' => 'Construire un socle avant d empiler des écrans',
@@ -332,7 +332,7 @@ final class PortfolioContent
                     ],
                 ],
                 'delivery' => [
-                    'eyebrow' => 'Perimetre pose',
+                    'eyebrow' => 'Périmètre posé',
                     'title' => 'Les premiers blocs déjà identifiables dans le produit',
                     'items' => [
                         [
@@ -353,7 +353,7 @@ final class PortfolioContent
                     [
                         'label' => 'Vision',
                         'title' => 'Un outil métier conçu autour du suivi des dossiers',
-                        'content' => 'Kairos vise à regrouper dans une seule application les différents objets utiles au pilotage d une activité de médiation : utilisateurs, dossiers, interactions, rendez vous et notifications.',
+                        'content' => 'Kairos vise à regrouper dans une seule application les différents objets utiles au pilotage d une activité de médiation : utilisateurs, dossiers, interactions, rendez-vous et notifications.',
                     ],
                     [
                         'label' => 'Architecture',
@@ -363,7 +363,7 @@ final class PortfolioContent
                     [
                         'label' => 'Métier',
                         'title' => 'Un périmètre déjà identifiable',
-                        'content' => 'Les routes et contrôleurs existants montrent déjà les grands blocs fonctionnels : authentification, utilisateurs, gestion des dossiers, rendez vous, interactions liées aux dossiers et notifications.',
+                        'content' => 'Les routes et contrôleurs existants montrent déjà les grands blocs fonctionnels : authentification, utilisateurs, gestion des dossiers, rendez-vous, interactions liées aux dossiers et notifications.',
                     ],
                     [
                         'label' => 'Avancement',
@@ -422,7 +422,7 @@ final class PortfolioContent
                     'items' => [
                         [
                             'title' => 'Stabiliser les parcours métier principaux',
-                            'description' => 'Rendre les flux dossier, interaction et rendez vous vraiment utilisables de bout en bout.',
+                            'description' => 'Rendre les flux dossier, interaction et rendez-vous vraiment utilisables de bout en bout.',
                         ],
                         [
                             'title' => 'Affiner les rôles et permissions',
@@ -448,7 +448,7 @@ final class PortfolioContent
                 'solution' => "Le projet regroupe des outils de hash, de token, d analyse d architecture, d audit web, de scan de vulnérabilités et de gestion multi projets dans une interface unifiée.",
                 'result' => 'Le socle actuel montre déjà un produit modulaire, orienté usage réel, capable de servir à la fois la sécurité et la productivité de développement.',
                 'hero' => [
-                    'eyebrow' => 'Dev tools + securite',
+                    'eyebrow' => 'Dev tools + sécurité',
                     'headline' => 'Transformer une boîte à outils technique en véritable cockpit de travail.',
                     'intro' => 'La valeur ne vient pas seulement des scans ou des utilitaires, mais de leur mise en cohérence dans un même environnement de lecture et d action.',
                 ],
@@ -459,7 +459,7 @@ final class PortfolioContent
                     ['label' => 'Public', 'value' => 'Développement PHP multi projets'],
                 ],
                 'before_after' => [
-                    'eyebrow' => 'Avant / apres',
+                    'eyebrow' => 'Avant / après',
                     'title' => 'Réunir ce qui est souvent éclaté entre plusieurs outils',
                     'before' => [
                         'label' => 'Avant',
@@ -489,7 +489,7 @@ final class PortfolioContent
                     ],
                 ],
                 'decisions' => [
-                    'eyebrow' => 'Decisions cles',
+                    'eyebrow' => 'Décisions clés',
                     'title' => 'Ce qui donne sa cohérence au produit',
                     'items' => [
                         [
@@ -507,7 +507,7 @@ final class PortfolioContent
                     ],
                 ],
                 'delivery' => [
-                    'eyebrow' => 'Modules reperes',
+                    'eyebrow' => 'Modules repérés',
                     'title' => 'Les briques déjà visibles dans le produit',
                     'items' => [
                         [
@@ -543,7 +543,7 @@ final class PortfolioContent
                     [
                         'label' => 'Différenciation',
                         'title' => 'Transformer des analyses brutes en sorties compréhensibles',
-                        'content' => "Une partie de la valeur vient de la restitution : rapports, tableaux de bord, synthèses et vues d ensemble rendent des informations techniques plus accessibles et plus utiles à la prise de décision.",
+                        'content' => "Une partie de la valeur vient de la restitution : rapports, tableaux de bord, synthèses et vues d'ensemble rendent des informations techniques plus accessibles et plus utiles à la prise de décision.",
                     ],
                 ],
                 'list_sections' => [

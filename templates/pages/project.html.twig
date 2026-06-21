@@ -13,7 +13,7 @@
                 </span>
             </a>
 
-            <a class="button button-outline project-back-link" href="{{ path('app_home') }}#realisations">Retour aux realisations</a>
+            <a class="button button-outline project-back-link" href="{{ path('app_home') }}#realisations">Retour aux réalisations</a>
         </header>
 
         <main class="project-page">
@@ -23,7 +23,7 @@
                         <figure class="project-shot">
                             <img
                                 src="{{ project.image }}"
-                                alt="Apercu du projet {{ project.name }}"
+                                alt="Aperçu du projet {{ project.name }}"
                                 decoding="async"
                                 width="4460"
                                 height="2786"
@@ -31,7 +31,7 @@
                         </figure>
                     {% else %}
                         <article class="project-hero-panel project-hero-placeholder" aria-hidden="true">
-                            <p class="panel-label">Vue d ensemble</p>
+                            <p class="panel-label">Vue d'ensemble</p>
                             <h2>{{ project.name }}</h2>
                             <p>{{ project.type }}</p>
                         </article>
@@ -59,16 +59,16 @@
             <section class="section">
                 <div class="section-heading compact">
                     <p class="eyebrow">Lecture rapide</p>
-                    <h2>Les points cles du projet</h2>
+                    <h2>Les points clés du projet</h2>
                 </div>
 
                 <div class="project-summary-points project-summary-points-grid">
                     <div>
-                        <span>Probleme</span>
+                        <span>Problème</span>
                         <p>{{ project.problem }}</p>
                     </div>
                     <div>
-                        <span>Defi</span>
+                        <span>Défi</span>
                         <p>{{ project.challenge }}</p>
                     </div>
                     <div>
@@ -232,7 +232,7 @@
             <section class="section">
                 <div class="section-heading compact">
                     <p class="eyebrow">Stack</p>
-                    <h2>Quelques briques mobilisees</h2>
+                    <h2>Quelques briques mobilisées</h2>
                 </div>
 
                 <div class="tag-row">
