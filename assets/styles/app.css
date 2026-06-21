@@ -99,6 +99,30 @@ a.button {
     box-shadow: 0 18px 45px rgba(25, 30, 40, 0.06);
 }
 
+.contact-page-feedback {
+    margin-top: 0.35rem;
+    padding: 0.85rem 1.2rem;
+    border-radius: 18px;
+    font-size: 0.98rem;
+    line-height: 1.45;
+}
+
+.contact-page-feedback p {
+    margin: 0;
+}
+
+.contact-page-feedback-success {
+    background: rgba(116, 223, 172, 0.14);
+    border: 1px solid rgba(116, 223, 172, 0.28);
+    color: #24563c;
+}
+
+.contact-page-feedback-error {
+    background: rgba(255, 125, 125, 0.12);
+    border: 1px solid rgba(255, 125, 125, 0.28);
+    color: #7a2626;
+}
+
 .brand {
     display: inline-flex;
     gap: 0.85rem;
@@ -1019,6 +1043,25 @@ h3 {
     margin: 0;
 }
 
+.contact-feedback {
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+.contact-feedback-success {
+    background: rgba(116, 223, 172, 0.16);
+    border: 1px solid rgba(116, 223, 172, 0.3);
+    color: #d8ffea;
+}
+
+.contact-feedback-error {
+    background: rgba(255, 125, 125, 0.12);
+    border: 1px solid rgba(255, 125, 125, 0.28);
+    color: #ffd9d9;
+}
+
 .contact-form-shell {
     display: grid;
     grid-template-rows: 0fr;
@@ -1055,8 +1098,7 @@ h3 {
 }
 
 .contact-field span,
-.contact-form-note,
-.contact-mailto-link {
+.contact-form-note {
     color: rgba(232, 240, 255, 0.8);
 }
 
@@ -1099,21 +1141,6 @@ h3 {
     flex-wrap: wrap;
     gap: 0.85rem 1rem;
     align-items: center;
-}
-
-.contact-mailto-link {
-    font-size: 0.94rem;
-    text-decoration: underline;
-    text-decoration-color: rgba(255, 255, 255, 0.26);
-    text-underline-offset: 0.22rem;
-    transition:
-        color 180ms ease,
-        text-decoration-color 180ms ease;
-}
-
-.contact-mailto-link:hover {
-    color: #fff;
-    text-decoration-color: rgba(255, 255, 255, 0.5);
 }
 
 .contact-form-note {
