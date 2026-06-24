@@ -99,28 +99,107 @@ a.button {
     box-shadow: 0 18px 45px rgba(25, 30, 40, 0.06);
 }
 
+.contact-entry {
+    display: grid;
+    gap: 0.9rem;
+}
+
 .contact-page-feedback {
+    position: relative;
+    display: grid;
+    gap: 0.45rem;
+    justify-self: end;
+    width: min(100%, 34rem);
     margin-top: 0.35rem;
-    padding: 0.85rem 1.2rem;
-    border-radius: 18px;
+    padding: 1rem 1.2rem 1.05rem 1.3rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 40px rgba(21, 29, 46, 0.08);
     font-size: 0.98rem;
-    line-height: 1.45;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.contact-page-feedback::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 5px;
+    border-radius: 999px;
+    content: "";
+}
+
+.contact-page-feedback::after {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    right: 2.2rem;
+    width: 1px;
+    height: 1.15rem;
+    background: linear-gradient(180deg, rgba(47, 111, 237, 0.35), rgba(47, 111, 237, 0));
+    content: "";
+}
+
+.contact-page-feedback-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.contact-page-feedback-label::before {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    box-shadow: 0 0 0 0.28rem rgba(255, 255, 255, 0.72);
+    content: "";
 }
 
 .contact-page-feedback p {
     margin: 0;
+    max-width: 62ch;
 }
 
 .contact-page-feedback-success {
-    background: rgba(116, 223, 172, 0.14);
-    border: 1px solid rgba(116, 223, 172, 0.28);
-    color: #24563c;
+    background:
+        linear-gradient(135deg, rgba(244, 255, 250, 0.92), rgba(232, 248, 239, 0.96)),
+        rgba(116, 223, 172, 0.12);
+    border-color: rgba(74, 178, 124, 0.24);
+    color: #1d4f36;
+}
+
+.contact-page-feedback-success::before {
+    background: linear-gradient(180deg, #47b978, #87d9aa);
+}
+
+.contact-page-feedback-success .contact-page-feedback-label {
+    color: #2f7a55;
+}
+
+.contact-page-feedback-success .contact-page-feedback-label::before {
+    background: linear-gradient(135deg, #47b978, #87d9aa);
 }
 
 .contact-page-feedback-error {
-    background: rgba(255, 125, 125, 0.12);
-    border: 1px solid rgba(255, 125, 125, 0.28);
+    background:
+        linear-gradient(135deg, rgba(255, 246, 246, 0.94), rgba(255, 237, 237, 0.97)),
+        rgba(255, 125, 125, 0.12);
+    border-color: rgba(223, 106, 106, 0.24);
     color: #7a2626;
+}
+
+.contact-page-feedback-error::before {
+    background: linear-gradient(180deg, #df6a6a, #f2a19d);
+}
+
+.contact-page-feedback-error .contact-page-feedback-label {
+    color: #a44545;
+}
+
+.contact-page-feedback-error .contact-page-feedback-label::before {
+    background: linear-gradient(135deg, #df6a6a, #f2a19d);
 }
 
 .brand {
@@ -1562,6 +1641,15 @@ h3 {
         row-gap: 0.75rem;
     }
 
+    .contact-page-feedback {
+        justify-self: stretch;
+        width: 100%;
+    }
+
+    .contact-page-feedback::after {
+        right: 1.9rem;
+    }
+
     .hero {
         min-height: auto;
     }
@@ -1701,6 +1789,18 @@ h3 {
 
     .section {
         padding-top: 3.5rem;
+    }
+
+    .contact-entry {
+        gap: 0.7rem;
+    }
+
+    .contact-page-feedback {
+        padding: 0.95rem 1rem 1rem 1.15rem;
+    }
+
+    .contact-page-feedback::after {
+        display: none;
     }
 
     .section-split {
