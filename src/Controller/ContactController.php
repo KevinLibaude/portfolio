@@ -22,7 +22,7 @@ final class ContactController extends AbstractController
         if (!$this->isCsrfTokenValid('contact_form', $token)) {
             $this->addFlash('contact_error', 'La session du formulaire a expire. Merci de reessayer.');
 
-            return $this->redirectToContact('error');
+            return $this->redirectToContact();
         }
 
         $contact = [
@@ -35,13 +35,13 @@ final class ContactController extends AbstractController
         if ($contact['name'] === '' || $contact['email'] === '' || $contact['message'] === '') {
             $this->addFlash('contact_error', 'Merci de renseigner votre nom, votre email et votre message.');
 
-            return $this->redirectToContact('error');
+            return $this->redirectToContact();
         }
 
         if (filter_var($contact['email'], FILTER_VALIDATE_EMAIL) === false) {
             $this->addFlash('contact_error', 'L adresse email semble invalide.');
 
-            return $this->redirectToContact('error');
+            return $this->redirectToContact();
         }
 
         try {
@@ -49,16 +49,16 @@ final class ContactController extends AbstractController
         } catch (\Throwable) {
             $this->addFlash('contact_error', 'Le message n a pas pu etre envoye pour le moment. Merci de reessayer un peu plus tard.');
 
-            return $this->redirectToContact('error');
+            return $this->redirectToContact();
         }
 
         $this->addFlash('contact_success', 'Votre message a bien ete envoye. Je vous repondrai rapidement.');
 
-        return $this->redirectToContact('success');
+        return $this->redirectToContact();
     }
 
-    private function redirectToContact(string $status): RedirectResponse
+    private function redirectToContact(): RedirectResponse
     {
-        return $this->redirect($this->generateUrl('app_home', ['contact' => $status]) . '#contact');
+        return $this->redirect($this->generateUrl('app_home') . '#contact');
     }
 }

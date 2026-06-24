@@ -32,10 +32,11 @@
             alt: 'Tableau de bord analytique affiché sur un ordinateur pour suivre les usages et orienter les évolutions.'
         }
     } %}
-    {% set contact_state = app.request.query.get('contact') %}
     {% set contact_success_messages = app.flashes('contact_success') %}
     {% set contact_error_messages = app.flashes('contact_error') %}
-    {% set has_contact_feedback = contact_state in ['success', 'error'] or (contact_success_messages|length + contact_error_messages|length) > 0 %}
+    {% set has_contact_success = contact_success_messages is not empty %}
+    {% set has_contact_error = contact_error_messages is not empty %}
+    {% set has_contact_feedback = has_contact_success or has_contact_error %}
     <div class="site-shell">
         <header class="site-header">
             <a class="brand" href="{{ path('app_home') }}">
@@ -276,21 +277,17 @@
 
             <div class="contact-entry">
                 {% if has_contact_feedback %}
-                    <div class="contact-page-feedback{% if contact_state == 'error' or contact_error_messages is not empty %} contact-page-feedback-error{% else %} contact-page-feedback-success{% endif %}">
+                    <div class="contact-page-feedback{% if has_contact_error %} contact-page-feedback-error{% else %} contact-page-feedback-success{% endif %}">
                         <span class="contact-page-feedback-label">
-                            {% if contact_state == 'error' or contact_error_messages is not empty %}
+                            {% if has_contact_error %}
                                 Envoi impossible
                             {% else %}
                                 Message envoye
                             {% endif %}
                         </span>
-                        {% if contact_state == 'success' and contact_success_messages is empty %}
-                            <p>Votre message a bien ete envoye depuis le site.</p>
-                        {% elseif contact_state == 'error' and contact_error_messages is empty %}
-                            <p>Le message n a pas pu etre envoye pour le moment.</p>
-                        {% elseif contact_success_messages is not empty %}
+                        {% if has_contact_success %}
                             <p>{{ contact_success_messages|first }}</p>
-                        {% elseif contact_error_messages is not empty %}
+                        {% elseif has_contact_error %}
                             <p>{{ contact_error_messages|first }}</p>
                         {% endif %}
                     </div>

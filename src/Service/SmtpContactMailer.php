@@ -10,7 +10,8 @@ final class SmtpContactMailer
     public function __construct(
         #[Autowire('%env(MAILER_DSN)%')]
         private readonly string $mailerDsn,
-        private readonly string $recipientEmail = 'kevin.libaude@gmail.com',
+        #[Autowire('%env(CONTACT_RECIPIENT_EMAIL)%')]
+        private readonly string $recipientEmail,
         private readonly string $senderEmail = 'noreply@portfolio.local',
         private readonly string $senderName = 'Portfolio contact'
     ) {
